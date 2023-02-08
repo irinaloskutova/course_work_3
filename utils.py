@@ -30,6 +30,7 @@ def get_executed_transaction(data):
     return data_list
 
 def get_last_values(data, count_last_values):
+    """Получает последние значения из списка транзакий"""
     data = sorted(data, key=lambda x: x['date'], reverse=True)
     return data[:count_last_values]
 
@@ -53,7 +54,7 @@ def hide_part_number_from(data):
         return a
 
 def hide_part_number_to(data):
-    """скрывает цифры из номера сета получателя"""
+    """скрывает цифры из номера счета получателя"""
     hide_part = data[0]['to']  # берет значение из to
     hide_part_first_word = hide_part.split(' ')[0]  # берет 1 слово из значения to
     hide_part_second_word = list(hide_part.split(' ')[1])[-4:]  # берет последние 4 знака из 2 слова из значения to
