@@ -25,16 +25,20 @@ def get_sorted(data):
 
 
 def hide_part_number_from(data):
-    """скрывает цифры из номера карты отправителя"""
-    hide_part = data[4]['from'] #берет значение из from
+    """скрывает цифры из номера счета отправителя"""
+    hide_part = data[0]['from'] #берет значение из from
     hide_part_first_word = hide_part.split(' ')[0] #берет первое слово из значения from
-    hide_part_second_word_1 = list(hide_part.split(' ')[1])[0:6] #берет первые 6 знаков из второго слова из значения from
+    hide_part_second_word_1 = list(hide_part.split(' ')[-1])[0:6] #берет первые 6 знаков из второго слова из значения from
     hide_part_second_word_2 = list(hide_part.split(' ')[1])[-4:] #берет последние 4 знака из второго слова из значения from
     return f"{hide_part_first_word} {''.join(hide_part_second_word_1)}******{''.join(hide_part_second_word_2)}"
 
 
-def hide_part_number_to():
-    pass
+def hide_part_number_to(data):
+    """скрывает цифры из номера сета получателя"""
+    hide_part = data[0]['to']  # берет значение из to
+    hide_part_first_word = hide_part.split(' ')[0]  # берет первое слово из значения to
+    hide_part_second_word = list(hide_part.split(' ')[1])[-4:]  # берет последние 4 знака из второго слова из значения to
+    return f"{hide_part_first_word} **{''.join(hide_part_second_word)}"
 
 
 # print(get_beautiful_date(data[0]['date']))
@@ -43,6 +47,6 @@ def hide_part_number_to():
 # print(f"{data[0]['from']} -> {data[0]['to']}")
 # print(f"{data[0]['operationAmount']['amount']} {data[0]['operationAmount']['currency']['name']}")
 #
-print(hide_part_number_from(data))
+# print(hide_part_number_from(data))
 #
-# print(data[1])
+print(get_one_transaction(data))
