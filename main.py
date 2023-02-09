@@ -5,10 +5,6 @@ from utils import *
 import json
 
 
-# print(len(date))
-# print(date[0]["id"])
-
-
 def main():
     data = utils.load_data('operations.json') #загрузили данные из файла 'operations.json'
     all_executed = get_executed_transaction(data) #получили список выполненных транзакций EXECUTED

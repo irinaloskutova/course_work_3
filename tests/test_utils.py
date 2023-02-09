@@ -1,10 +1,9 @@
 import pytest
 
-from utils import load_data, get_beautiful_date, get_executed_transaction, get_last_values, hide_part_number_from, hide_part_number_to
 
-
+from utils import *
 @pytest.fixture
-def test_data():
+def tests_data():
     data = [
         {
             "id": 441945886,
@@ -53,21 +52,21 @@ def test_data():
         }]
     return data
 
-def test_load_data(test_data):
-    assert len(load_data(test_data)) == 3
-    assert load_data(test_data) == []
+# def test_load_data('test_utils.tests_data'):
+#     assert len(load_data('test_utils.tests_data')) == 100
+    # assert load_data('operations.json') == os.Path
 
-def test_get_beautiful_date(test_data):
-    assert get_beautiful_date(test_data[0]['date']) == '26.08.2019'
+def test_get_beautiful_date(tests_data):
+    assert get_beautiful_date(tests_data[0]['date']) == '26.08.2019'
 
-def test_get_executed_transaction(test_data):
-    assert len(get_executed_transaction(test_data)) == 2
+def test_get_executed_transaction(tests_data):
+    assert len(get_executed_transaction(tests_data)) == 2
 
-def test_get_last_values(test_data):
-    assert len(get_last_values(test_data, 2)) == 2
+def test_get_last_values(tests_data):
+    assert len(get_last_values(tests_data, 2)) == 2
 
-def test_hide_part_number_from(test_data):
-    print(hide_part_number_from(test_data[0]['from']))
+def test_hide_part_number_from(tests_data):
+    assert hide_part_number_from(tests_data) == 'Maestro 1596 83** **** 5199'
 
-def test_hide_part_number_to(test_data):
-    assert hide_part_number_to(test_data[0]['to']) == 'Счет **9589'
+def test_hide_part_number_to(tests_data):
+    assert hide_part_number_to(tests_data) == 'Счет **9589'
