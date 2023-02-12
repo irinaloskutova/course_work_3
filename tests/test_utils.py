@@ -1,5 +1,5 @@
 import pytest
-
+import json
 
 from utils import *
 @pytest.fixture
@@ -52,9 +52,8 @@ def tests_data():
         }]
     return data
 
-# def test_load_data('test_utils.tests_data'):
-#     assert len(load_data('test_utils.tests_data')) == 100
-    # assert load_data('operations.json') == os.Path
+def test_load_data():
+    assert len(load_data('operations.json')) == 101
 
 def test_get_beautiful_date(tests_data):
     assert get_beautiful_date(tests_data[0]['date']) == '26.08.2019'
